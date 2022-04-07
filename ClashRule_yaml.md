@@ -171,3 +171,157 @@ rules:
   - RULE-SET,telegramcidr,PROXY
   - MATCH,DIRECT
 ```
+
+# 自写配置（有问题，待调整）
+## 参考链接
+clash 配置文件详细解析及示例： https://www.cfmem.com/2021/08/clash.html
+提供一种parser可以自动替换订阅的规则为自定义规则： https://github.com/Loyalsoldier/clash-rules/issues/27
+订阅转换： https://acl4ssr.netlify.app/
+
+## 配置代码
+```
+proxy-groups:
+  - name: 🚀 节点选择
+    type: select
+    proxies:
+      - ♻️ 自动选择
+      - 🔯 故障转移
+      - 🔮 负载均衡
+      - DIRECT
+      
+  - name: ♻️ 自动选择
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    proxies:
+      - 🔰 手动选择
+    
+  - name: 🔯 故障转移
+    type: fallback
+    url: http://www.gstatic.com/generate_204
+    interval: 180
+    proxies:
+      - 🔰 手动选择
+      
+  - name: 🔮 负载均衡
+    type: load-balance
+    strategy: consistent-hashing
+    url: http://www.gstatic.com/generate_204
+    interval: 180
+    proxies:
+      - 🔰 手动选择
+      
+  - name: 🎯 全球直连
+    type: select
+    proxies:
+      - DIRECT
+      - ♻️ 自动选择
+      
+  - name: 🛑 全球拦截
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+      - ♻️ 自动选择
+      
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies:
+      - 🎯 全球直连
+      - ♻️ 自动选择
+      - 🔯 故障转移
+      - 🔮 负载均衡
+      
+  - name: 🔰 手动选择
+    type: select
+
+
+rule-providers:
+  ;GFWList 域名列表
+  gfw:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
+    ;url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt"
+    path: ./ruleset/gfw.yaml
+    interval: 86400
+
+  ;GreatFire 域名列表
+  greatfire:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/greatfire.txt"
+    ;url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/greatfire.txt"
+    path: ./ruleset/greatfire.yaml
+    interval: 86400
+
+  ;代理域名列表
+  proxy:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    ;url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt"
+    path: ./ruleset/proxy.yaml
+    interval: 86400
+
+  ;直连域名列表 
+  direct:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+    ;url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt"
+    path: ./ruleset/direct.yaml
+    interval: 86400
+
+  ;Telegram 使用的 IP 地址列表
+  telegramcidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
+    ;url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/telegramcidr.txt"
+    path: ./ruleset/telegramcidr.yaml
+    interval: 86400
+
+  ;中国大陆 IP 地址列表
+  cncidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+    ;url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt"
+    path: ./ruleset/cncidr.yaml
+    interval: 86400
+
+  ;局域网 IP 及保留 IP 地址列表
+  lancidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+    ;url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt"
+    path: ./ruleset/lancidr.yaml
+    interval: 86400
+
+  ;需要直连的常见软件列表
+  applications:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt"
+    ;url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/applications.txt"
+    path: ./ruleset/applications.yaml
+    interval: 86400
+
+rules:
+  - RULE-SET,proxy,♻️ 自动选择
+  - RULE-SET,gfw,♻️ 自动选择
+  - RULE-SET,GreatFire,♻️ 自动选择
+  - RULE-SET,telegramcidr,♻️ 自动选择
+  - RULE-SET,direct,DIRECT
+  - RULE-SET,lancidr,DIRECT
+  - RULE-SET,cncidr,DIRECT
+  - RULE-SET,applications,DIRECT
+  - DOMAIN,clash.razord.top,DIRECT
+  - DOMAIN,yacd.haishan.me,DIRECT
+  - GEOIP,LAN,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,♻️ 自动选择
+```
