@@ -1,5 +1,6 @@
-# 1. filter nodes
-# 2. change nodes to base64
-https://tool.oschina.net/encrypt?type=3
-# 3. create sub link
-copy base64 code into github, save a new md file and then see raw link
+# 1. create sub link
+https://github.com/xEchox/tomato/blob/main/create%20sub%20link.md
+
+# 2. clash rule
+https://github.com/xEchox/tomato/blob/main/clash%20rule.md
+
