@@ -10,6 +10,32 @@ clash 配置文件详细解析及示例： https://www.cfmem.com/2021/08/clash.h
 
 ## 配置代码
 ```
+proxy-providers:
+# 「url」参数填写订阅链接
+#
+# 订阅链接可以使用 API进行转换
+#
+# 1.模式选择「进阶模式」 2.填写订阅链接 3.勾选「仅输出节点信息」 4.「生成订阅链接」
+  ProxyProvidersName1:
+    type: http
+    url: "https://v1.mk/..."
+    path: ./Proxy/ProxyProvidersName1.yaml
+    interval: 3600
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.google.com/generate_204
+
+  ProxyProvidersName2:
+    type: http
+    url: "https://v1.mk/..."
+    path: ./Proxy/ProxyProvidersName2.yaml
+    interval: 3600
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.google.com/generate_204
+
 proxy-groups:
   - name: 🚀 节点选择
     type: select
@@ -66,32 +92,6 @@ proxy-groups:
       - 🔮 负载均衡
       - 🎯 全球直连
       - 🛑 全球拦截
-
-proxy-providers:
-# 「url」参数填写订阅链接
-#
-# 订阅链接可以使用 API进行转换
-#
-# 1.模式选择「进阶模式」 2.填写订阅链接 3.勾选「仅输出节点信息」 4.「生成订阅链接」
-  ProxyProvidersName1:
-    type: http
-    url: "https://v1.mk/..."
-    path: ./Proxy/ProxyProvidersName1.yaml
-    interval: 3600
-    health-check:
-      enable: true
-      interval: 600
-      url: http://www.google.com/generate_204
-
-  ProxyProvidersName2:
-    type: http
-    url: "https://v1.mk/..."
-    path: ./Proxy/ProxyProvidersName2.yaml
-    interval: 3600
-    health-check:
-      enable: true
-      interval: 600
-      url: http://www.google.com/generate_204
 
 rule-providers:
   ;GFWList 域名列表
