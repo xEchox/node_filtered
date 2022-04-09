@@ -1,4 +1,6 @@
-转载自： https://github.com/Loyalsoldier/clash-rules
+参考自： 
+https://github.com/Loyalsoldier/clash-rules
+https://www.v2rayssr.com/clash.html
 
 # rule-providers
 ```
