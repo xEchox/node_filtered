@@ -40,7 +40,7 @@ ruleset=🎯 全球直连,[]GEOIP,CN
 ruleset=🐟 漏网之鱼,[]FINAL
 
 [精简]
-custom_proxy_group=🚀 节点选择`selec`[]🔰 手动选择`[]🔯 故障转移`[]DIRECT
+custom_proxy_group=🚀 节点选择`select`[]🔰 手动选择`[]🔯 故障转移`[]DIRECT
 custom_proxy_group=🔰 手动选择`select`.*
 custom_proxy_group=🔯 故障转移`fallback`.*`http://www.google.com/generate_204`1000
 custom_proxy_group=🎯 全球直连`select`[]DIRECT`[]🚀 节点选择
