@@ -1,3 +1,16 @@
+# 自写配置
+## 参考链接
+规则集： https://github.com/ACL4SSR/ACL4SSR/tree/master/Clash
+
+规则配置： 
+
+    https://github.com/ACL4SSR/ACL4SSR/issues/729
+
+    https://github.com/zhouzhouprogram/Shadowrocket-ADBlock-Rules
+
+
+## 配置代码
+```
 # Reference: https://github.com/zhouzhouprogram/Shadowrocket-ADBlock-Rules
 ## Best Shadowrocket Rules (https://github.com/h2y/Shadowrocket-ADBlock-Rules)
 ## By Moshel @ https://hzy.pw/
@@ -11,8 +24,6 @@ dns-server = system, 114.114.114.114, 112.124.47.27, 8.8.8.8, 8.8.4.4
 ipv6=true
 
 [Rule]
-# Convert from:
-# https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR.ini
 RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list,DIRECT
 RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list,DIRECT
 RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list,PROXY
@@ -49,4 +60,5 @@ FINAL,PROXY
 [URL Rewrite]
 ^http://(www.)?google.cn https://www.google.com 302
 
+```
 
