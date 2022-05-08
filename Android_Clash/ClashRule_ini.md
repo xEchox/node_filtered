@@ -1,6 +1,7 @@
-ini格式
+通常用于在线订阅转换中[上传自定义配置]
+
 ```
-[ini配置]
+[远程配置]
 ruleset=🎯 全球直连,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
 ruleset=🎯 全球直连,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
 ruleset=🛑 全球拦截,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
@@ -39,12 +40,9 @@ ruleset=🎯 全球直连,[]GEOIP,LAN
 ruleset=🎯 全球直连,[]GEOIP,CN
 ruleset=🐟 漏网之鱼,[]FINAL
 
-[精简]
-custom_proxy_group=🚀 节点选择`select`[]🔰 手动选择`[]♻️ 自动选择`[]🔯 故障转移`[]🔮 负载均衡`[]DIRECT
+custom_proxy_group=🚀 节点选择`select`[]🔰 手动选择`[]🔯 故障转移`[]DIRECT
 custom_proxy_group=🔰 手动选择`select`.*
-custom_proxy_group=♻️ 自动选择`url-test`.*`http://www.google.com/generate_204`300,,50
-custom_proxy_group=🔯 故障转移`fallback`.*`http://www.google.com/generate_204`180
-custom_proxy_group=🔮 负载均衡`load-balance`.*`http://www.google.com/generate_204`180
+custom_proxy_group=🔯 故障转移`fallback`.*`http://www.google.com/generate_204`18
 custom_proxy_group=🎯 全球直连`select`[]DIRECT`[]🚀 节点选择
 custom_proxy_group=🛑 全球拦截`select`[]REJECT`[]DIRECT`[]🚀 节点选择
 custom_proxy_group=🐟 漏网之鱼`select`[]🚀 节点选择`[]DIRECT`[]REJECT
