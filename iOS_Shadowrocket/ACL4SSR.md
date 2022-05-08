@@ -4,9 +4,9 @@
 
 规则配置： 
 
-    https://github.com/ACL4SSR/ACL4SSR/issues/729
+https://github.com/ACL4SSR/ACL4SSR/issues/729
 
-    https://github.com/zhouzhouprogram/Shadowrocket-ADBlock-Rules
+https://github.com/zhouzhouprogram/Shadowrocket-ADBlock-Rules
 
 
 ## 配置代码
