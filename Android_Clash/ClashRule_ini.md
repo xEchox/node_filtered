@@ -44,6 +44,6 @@ custom_proxy_group=🚀 节点选择`select`[]🔰 手动选择`[]🔯 故障转
 custom_proxy_group=🔰 手动选择`select`.*
 custom_proxy_group=🔯 故障转移`fallback`.*`http://www.google.com/generate_204`18
 custom_proxy_group=🎯 全球直连`select`[]DIRECT`[]🚀 节点选择
-custom_proxy_group=🛑 全球拦截`select`[]REJECT`[]DIRECT`[]🚀 节点选择
+custom_proxy_group=🛑 全球拦截`select`[]🚀 节点选择`[]REJECT`[]DIRECT
 custom_proxy_group=🐟 漏网之鱼`select`[]🚀 节点选择`[]DIRECT`[]REJECT
 ```
